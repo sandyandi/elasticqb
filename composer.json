@@ -1,0 +1,31 @@
+{
+    "name": "sandyandi/elasticsearch",
+    "description": "A fluent query builder for Elasticsearch",
+    "keywords": ["elasticsearch", "php", "fluent"],
+    "type": "library",
+    "require": {
+        "php": ">=5.5.9",
+        "elasticsearch/elasticsearch": "^2.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sandyandi N. dela Cruz",
+            "email": "sandyandi.delacruz@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Sandyandi\\Elasticsearch\\": "src/Elasticsearch/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sandyandi\\Elasticsearch\\Tests\\": "tests/Elasticsearch/Tests/"
+        }
+    }
+}
