@@ -63,8 +63,8 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     {
         $actual = $this->query
             ->mustTerm('firstName', 'Sandyandi')
-            ->should(function ($booleanQuery) {
-                $booleanQuery
+            ->should(function ($query) {
+                $query
                     ->mustMatch('lastName', 'dela Cruz')
                     ->mustTerm('birthDate', '1986-08-17');
             })->getQuery();
