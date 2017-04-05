@@ -1,8 +1,8 @@
 <?php
 
-namespace Sandyandi\Elasticsearch\Queries\Leaf;
+namespace Sandyandi\ElasticQb\Queries\Leaf;
 
-use Sandyandi\Elasticsearch\Contracts\QueryContract;
+use Sandyandi\ElasticQb\Contracts\QueryContract;
 
 class Leaf implements QueryContract
 {
@@ -36,7 +36,7 @@ class Leaf implements QueryContract
     /**
      * @return array
      */
-    public function getQueryArray()
+    public function getQuery()
     {
         return [$this->name => [$this->key => $this->value]];
     }

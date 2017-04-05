@@ -1,8 +1,8 @@
 <?php
 
-namespace Sandyandi\Elasticsearch\Queries\Compound\Boolean;
+namespace Sandyandi\ElasticQb\Queries\Compound\Boolean;
 
-use Sandyandi\Elasticsearch\Contracts\QueryContract;
+use Sandyandi\ElasticQb\Contracts\QueryContract;
 
 class Boolean implements QueryContract
 {
@@ -12,14 +12,14 @@ class Boolean implements QueryContract
     const CONDITION_FILTER = 'filter';
 
     /**
-     * @var \Sandyandi\Elasticsearch\Contracts\QueryContract[]
+     * @var \Sandyandi\ElasticQb\Contracts\QueryContract[]
      */
     protected $queries = [];
 
     /**
-     * @param \Sandyandi\Elasticsearch\Contracts\QueryContract $query
+     * @param \Sandyandi\ElasticQb\Contracts\QueryContract $query
      *
-     * @return Boolean
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Boolean
      */
     public function appendToMust(QueryContract $query)
     {
@@ -27,9 +27,9 @@ class Boolean implements QueryContract
     }
 
     /**
-     * @param \Sandyandi\Elasticsearch\Contracts\QueryContract $query
+     * @param \Sandyandi\ElasticQb\Contracts\QueryContract $query
      *
-     * @return Boolean
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Boolean
      */
     public function appendToMustNot(QueryContract $query)
     {
@@ -37,9 +37,9 @@ class Boolean implements QueryContract
     }
 
     /**
-     * @param \Sandyandi\Elasticsearch\Contracts\QueryContract $query
+     * @param \Sandyandi\ElasticQb\Contracts\QueryContract $query
      *
-     * @return Boolean
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Boolean
      */
     public function appendToShould(QueryContract $query)
     {
@@ -47,9 +47,9 @@ class Boolean implements QueryContract
     }
 
     /**
-     * @param \Sandyandi\Elasticsearch\Contracts\QueryContract $query
+     * @param \Sandyandi\ElasticQb\Contracts\QueryContract $query
      *
-     * @return Boolean
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Boolean
      */
     public function appendToFilter(QueryContract $query)
     {
@@ -59,12 +59,12 @@ class Boolean implements QueryContract
     /**
      * @return array
      */
-    public function getQueryArray()
+    public function getQuery()
     {
         $queryArray = [];
 
         foreach ($this->queries as $condition => $query) {
-            $queryArray[$condition] = $query->getQueryArray();
+            $queryArray[$condition] = $query->getQuery();
         }
 
         return ['bool' => $queryArray];

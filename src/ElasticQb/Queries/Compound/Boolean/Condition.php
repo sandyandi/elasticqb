@@ -1,13 +1,13 @@
 <?php
 
-namespace Sandyandi\Elasticsearch\Queries\Compound\Boolean;
+namespace Sandyandi\ElasticQb\Queries\Compound\Boolean;
 
-use Sandyandi\Elasticsearch\Contracts\QueryContract;
+use Sandyandi\ElasticQb\Contracts\QueryContract;
 
-class Condition
+class Condition implements QueryContract
 {
     /**
-     * @var \Sandyandi\Elasticsearch\Contracts\QueryContract[]
+     * @var \Sandyandi\ElasticQb\Contracts\QueryContract[]
      */
     protected $queries = [];
 
@@ -20,7 +20,7 @@ class Condition
     }
 
     /**
-     * @return \Sandyandi\Elasticsearch\Contracts\QueryContract|null
+     * @return \Sandyandi\ElasticQb\Contracts\QueryContract|null
      */
     public function first()
     {
@@ -28,7 +28,7 @@ class Condition
     }
 
     /**
-     * @param \Sandyandi\Elasticsearch\Contracts\QueryContract $query
+     * @param \Sandyandi\ElasticQb\Contracts\QueryContract $query
      *
      * @return $this
      */
@@ -42,18 +42,18 @@ class Condition
     /**
      * @return array
      */
-    public function getQueryArray()
+    public function getQuery()
     {
         $queries = [];
 
         if ($this->count() > 1) {
             foreach ($this->queries as $query) {
-                $queries[] = $query->getQueryArray();
+                $queries[] = $query->getQuery();
             }
 
             return $queries;
         }
 
-        return $this->first()->getQueryArray();
+        return $this->first()->getQuery();
     }
 }

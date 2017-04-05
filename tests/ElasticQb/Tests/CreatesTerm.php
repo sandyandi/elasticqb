@@ -1,9 +1,8 @@
 <?php
 
-namespace Sandyandi\Elasticsearch\Tests;
+namespace Sandyandi\ElasticQb\Tests;
 
-use Sandyandi\Elasticsearch\KeyValuePair;
-use Sandyandi\Elasticsearch\Queries\Leaf\Term;
+use Sandyandi\ElasticQb\Queries\Leaf\Term;
 
 trait CreatesTerm
 {

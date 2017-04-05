@@ -1,11 +1,10 @@
 {
-    "name": "sandyandi/elasticsearch",
+    "name": "sandyandi/elasticqb",
     "description": "A fluent query builder for Elasticsearch",
-    "keywords": ["elasticsearch", "php", "fluent"],
+    "keywords": ["elasticsearch", "php", "fluent", "query", "dsl"],
     "type": "library",
     "require": {
-        "php": ">=5.5.9",
-        "elasticsearch/elasticsearch": "^2.2"
+        "php": ">=5.5.9"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.5"
@@ -20,12 +19,12 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Sandyandi\\Elasticsearch\\": "src/Elasticsearch/"
+            "Sandyandi\\ElasticQb\\": "src/ElasticQb/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Sandyandi\\Elasticsearch\\Tests\\": "tests/Elasticsearch/Tests/"
+            "Sandyandi\\ElasticQb\\Tests\\": "tests/ElasticQb/Tests/"
         }
     }
 }

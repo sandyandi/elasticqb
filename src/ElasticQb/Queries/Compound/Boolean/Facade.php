@@ -1,24 +1,24 @@
 <?php
 
-namespace Sandyandi\Elasticsearch\Queries\Compound\Boolean;
+namespace Sandyandi\ElasticQb\Queries\Compound\Boolean;
 
-use Sandyandi\Elasticsearch\Contracts\QueryContract;
-use Sandyandi\Elasticsearch\Queries\Leaf\Factory as LeafFactory;
+use Sandyandi\ElasticQb\Contracts\QueryContract;
+use Sandyandi\ElasticQb\Queries\Leaf\Factory as LeafFactory;
 
 class Facade implements QueryContract
 {
     /**
-     * @var \Sandyandi\Elasticsearch\Queries\Leaf\Factory
+     * @var \Sandyandi\ElasticQb\Queries\Leaf\Factory
      */
     protected $leafFactory;
 
     /**
-     * @var \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Boolean
+     * @var \Sandyandi\ElasticQb\Queries\Compound\Boolean\Boolean
      */
     protected $boolean;
 
     /**
-     * @param \Sandyandi\Elasticsearch\Queries\Leaf\Factory $leafFactory
+     * @param \Sandyandi\ElasticQb\Queries\Leaf\Factory $leafFactory
      */
     public function __construct(LeafFactory $leafFactory)
     {
@@ -30,7 +30,7 @@ class Facade implements QueryContract
      * @param string $key
      * @param mixed $value
      *
-     * @return \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade
      */
     public function mustTerm($key, $value)
     {
@@ -43,7 +43,7 @@ class Facade implements QueryContract
      * @param string $key
      * @param mixed $value
      *
-     * @return \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade
      */
     public function mustMatch($key, $value)
     {
@@ -55,7 +55,7 @@ class Facade implements QueryContract
     /**
      * @param \Closure $closure
      *
-     * @return \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade
      */
     public function must(\Closure $closure)
     {
@@ -68,7 +68,7 @@ class Facade implements QueryContract
      * @param string $key
      * @param mixed $value
      *
-     * @return \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade
      */
     public function mustNotTerm($key, $value)
     {
@@ -81,7 +81,7 @@ class Facade implements QueryContract
      * @param string $key
      * @param mixed $value
      *
-     * @return \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade
      */
     public function mustNotMatch($key, $value)
     {
@@ -93,7 +93,7 @@ class Facade implements QueryContract
     /**
      * @param \Closure $closure
      *
-     * @return \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade
      */
     public function mustNot(\Closure $closure)
     {
@@ -106,7 +106,7 @@ class Facade implements QueryContract
      * @param string $key
      * @param mixed $value
      *
-     * @return \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade
      */
     public function shouldTerm($key, $value)
     {
@@ -119,7 +119,7 @@ class Facade implements QueryContract
      * @param string $key
      * @param mixed $value
      *
-     * @return \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade
      */
     public function shouldMatch($key, $value)
     {
@@ -131,7 +131,7 @@ class Facade implements QueryContract
     /**
      * @param \Closure $closure
      *
-     * @return \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade
      */
     public function should(\Closure $closure)
     {
@@ -143,16 +143,16 @@ class Facade implements QueryContract
     /**
      * @return array
      */
-    public function getQueryArray()
+    public function getQuery()
     {
-        return $this->boolean->getQueryArray();
+        return $this->boolean->getQuery();
     }
     
     /**
      * @param string $key
      * @param mixed $value
      *
-     * @return \Sandyandi\Elasticsearch\Queries\Leaf\Leaf
+     * @return \Sandyandi\ElasticQb\Queries\Leaf\Leaf
      */
     protected function createTerm($key, $value)
     {
@@ -163,7 +163,7 @@ class Facade implements QueryContract
      * @param string $key
      * @param mixed $value
      *
-     * @return \Sandyandi\Elasticsearch\Queries\Leaf\Leaf
+     * @return \Sandyandi\ElasticQb\Queries\Leaf\Leaf
      */
     protected function createMatch($key, $value)
     {
@@ -173,7 +173,7 @@ class Facade implements QueryContract
     /**
      * @param \Closure $closure
      *
-     * @return \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade
      */
     protected function getClosureProcessedInstance(\Closure $closure)
     {
@@ -185,7 +185,7 @@ class Facade implements QueryContract
     }
 
     /**
-     * @return \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade
      */
     protected function newInstance()
     {

@@ -2,12 +2,12 @@
 
 namespace Sandyandi\Elasticsearch\Tests;
 
-use Sandyandi\Elasticsearch\Query;
+use Sandyandi\ElasticQb\Query;
 
 class QueryTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Sandyandi\Elasticsearch\Query
+     * @var \Sandyandi\ElasticQb\Query
      */
     private $query;
 
@@ -21,7 +21,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldBuildLeafQuery()
     {
-        $actual = $this->query->term('firstName', 'Sandyandi')->toArray();
+        $actual = $this->query->term('firstName', 'Sandyandi')->getQuery();
 
         $expected = [
             'query' => [
@@ -39,7 +39,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldBuildBoolQuery()
     {
-        $actual = $this->query->mustTerm('firstName', 'Sandyandi')->toArray();
+        $actual = $this->query->mustTerm('firstName', 'Sandyandi')->getQuery();
 
         $expected = [
             'query' => [
@@ -67,7 +67,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
                 $booleanQuery
                     ->mustMatch('lastName', 'dela Cruz')
                     ->mustTerm('birthDate', '1986-08-17');
-            })->toArray();
+            })->getQuery();
 
         $expected = [
             'query' => [

@@ -1,9 +1,9 @@
 <?php
 
-namespace Sandyandi\Elasticsearch\Tests\Queries\Compound\Boolean;
+namespace Sandyandi\ElasticQb\Tests\Queries\Compound\Boolean;
 
-use Sandyandi\Elasticsearch\Queries\Compound\Boolean\Boolean;
-use Sandyandi\Elasticsearch\Tests\CreatesTerm;
+use Sandyandi\ElasticQb\Queries\Compound\Boolean\Boolean;
+use Sandyandi\ElasticQb\Tests\CreatesTerm;
 
 class BooleanTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +16,7 @@ class BooleanTest extends \PHPUnit_Framework_TestCase
     {
         $boolean = new Boolean();
         $actual = $boolean->appendToMust($this->createTerm('firstName', 'Sandyandi'))
-            ->getQueryArray();
+            ->getQuery();
 
         $expected = [
             'bool' => [
@@ -41,7 +41,7 @@ class BooleanTest extends \PHPUnit_Framework_TestCase
             ->appendToMust($this->createTerm('firstName', 'Sandyandi'))
             ->appendToMustNot($this->createTerm('lastName', 'dela Cruz'))
             ->appendToShould($this->createTerm('birthDate', '1986-08-17'))
-            ->getQueryArray();
+            ->getQuery();
 
         $expected = [
             'bool' => [
@@ -81,7 +81,7 @@ class BooleanTest extends \PHPUnit_Framework_TestCase
             ->appendToMustNot($this->createTerm('lastName', 'dela Cruz'))
             ->appendToShould($this->createTerm('birthDate', '1986-08-17'))
             ->appendToMust($nestedBoolean)
-            ->getQueryArray();
+            ->getQuery();
 
         $expected = [
             'bool' => [

@@ -1,24 +1,25 @@
 <?php
 
-namespace Sandyandi\Elasticsearch;
+namespace Sandyandi\ElasticQb;
 
-use Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade as BooleanFacade;
-use Sandyandi\Elasticsearch\Queries\Leaf\Factory as LeafFacade;
+use Sandyandi\ElasticQb\Contracts\QueryContract;
+use Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade as BooleanFacade;
+use Sandyandi\ElasticQb\Queries\Leaf\Factory as LeafFacade;
 
-class Query
+class Query implements QueryContract
 {
     /**
-     * @var \Sandyandi\Elasticsearch\Queries\Leaf\Factory
+     * @var \Sandyandi\ElasticQb\Queries\Leaf\Factory
      */
     protected $leafFacade;
 
     /**
-     * @var \Sandyandi\Elasticsearch\Queries\Compound\Boolean\Facade
+     * @var \Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade
      */
     protected $booleanFacade;
 
     /**
-     * @var \Sandyandi\Elasticsearch\Contracts\QueryContract[]
+     * @var \Sandyandi\ElasticQb\Contracts\QueryContract[]
      */
     protected $queries = [];
 
@@ -32,7 +33,7 @@ class Query
      * @param string $method
      * @param array $parameters
      *
-     * @return \Sandyandi\Elasticsearch\Query
+     * @return \Sandyandi\ElasticQb\Query
      * @throws \BadMethodCallException
      */
     public function __call($method, $parameters)
@@ -58,12 +59,12 @@ class Query
     /**
      * @return array
      */
-    public function toArray()
+    public function getQuery()
     {
         $queryArray = [];
 
         foreach ($this->queries as $query) {
-            $queryArray += $query->getQueryArray();
+            $queryArray += $query->getQuery();
         }
 
         return ['query' => $queryArray];

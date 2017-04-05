@@ -1,6 +1,6 @@
 <?php
 
-namespace Sandyandi\Elasticsearch\Queries\Leaf;
+namespace Sandyandi\ElasticQb\Queries\Leaf;
 
 class Factory
 {
@@ -18,7 +18,7 @@ class Factory
     {
         return $this->createLeaf(static::QUERY_TERM, $key, $value);
     }
-// todo: create base match config (like the MultiMatch) QlNkHpa7xGa9
+
     /**
      * @param string $key
      * @param mixed $value
