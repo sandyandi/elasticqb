@@ -17,12 +17,9 @@ class Facade implements QueryContract
      */
     protected $boolean;
 
-    /**
-     * @param \Sandyandi\ElasticQb\Queries\Leaf\Factory $leafFactory
-     */
-    public function __construct(LeafFactory $leafFactory)
+    public function __construct()
     {
-        $this->leafFactory = $leafFactory;
+        $this->leafFactory = LeafFactory::getInstance();
         $this->boolean = new Boolean();
     }
 
@@ -34,7 +31,9 @@ class Facade implements QueryContract
      */
     public function mustTerm($key, $value)
     {
-        $this->boolean->appendToMust($this->createTerm($key, $value));
+        $this->boolean->appendToMust(
+            $this->leafFactory->term($key, $value)
+        );
 
         return $this;
     }
@@ -47,7 +46,9 @@ class Facade implements QueryContract
      */
     public function mustMatch($key, $value)
     {
-        $this->boolean->appendToMust($this->createMatch($key, $value));
+        $this->boolean->appendToMust(
+            $this->leafFactory->match($key, $value)
+        );
 
         return $this;
     }
@@ -59,7 +60,9 @@ class Facade implements QueryContract
      */
     public function must(\Closure $closure)
     {
-        $this->boolean->appendToMust($this->getClosureProcessedInstance($closure));
+        $this->boolean->appendToMust(
+            $this->getClosureProcessedInstance($closure)
+        );
 
         return $this;
     }
@@ -72,7 +75,9 @@ class Facade implements QueryContract
      */
     public function mustNotTerm($key, $value)
     {
-        $this->boolean->appendToMustNot($this->createTerm($key, $value));
+        $this->boolean->appendToMustNot(
+            $this->leafFactory->term($key, $value)
+        );
 
         return $this;
     }
@@ -85,7 +90,9 @@ class Facade implements QueryContract
      */
     public function mustNotMatch($key, $value)
     {
-        $this->boolean->appendToMustNot($this->createMatch($key, $value));
+        $this->boolean->appendToMustNot(
+            $this->leafFactory->match($key, $value)
+        );
 
         return $this;
     }
@@ -97,7 +104,9 @@ class Facade implements QueryContract
      */
     public function mustNot(\Closure $closure)
     {
-        $this->boolean->appendToMustNot($this->getClosureProcessedInstance($closure));
+        $this->boolean->appendToMustNot(
+            $this->getClosureProcessedInstance($closure)
+        );
 
         return $this;
     }
@@ -110,7 +119,9 @@ class Facade implements QueryContract
      */
     public function shouldTerm($key, $value)
     {
-        $this->boolean->appendToShould($this->createTerm($key, $value));
+        $this->boolean->appendToShould(
+            $this->leafFactory->term($key, $value)
+        );
 
         return $this;
     }
@@ -123,7 +134,9 @@ class Facade implements QueryContract
      */
     public function shouldMatch($key, $value)
     {
-        $this->boolean->appendToShould($this->createMatch($key, $value));
+        $this->boolean->appendToShould(
+            $this->leafFactory->match($key, $value)
+        );
 
         return $this;
     }
@@ -135,7 +148,9 @@ class Facade implements QueryContract
      */
     public function should(\Closure $closure)
     {
-        $this->boolean->appendToShould($this->getClosureProcessedInstance($closure));
+        $this->boolean->appendToShould(
+            $this->getClosureProcessedInstance($closure)
+        );
 
         return $this;
     }
@@ -146,28 +161,6 @@ class Facade implements QueryContract
     public function getQuery()
     {
         return $this->boolean->getQuery();
-    }
-    
-    /**
-     * @param string $key
-     * @param mixed $value
-     *
-     * @return \Sandyandi\ElasticQb\Queries\Leaf\Leaf
-     */
-    protected function createTerm($key, $value)
-    {
-        return $this->leafFactory->term($key, $value);
-    }
-
-    /**
-     * @param string $key
-     * @param mixed $value
-     *
-     * @return \Sandyandi\ElasticQb\Queries\Leaf\Leaf
-     */
-    protected function createMatch($key, $value)
-    {
-        return $this->leafFactory->match($key, $value);
     }
 
     /**

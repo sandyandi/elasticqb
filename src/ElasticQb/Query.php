@@ -4,8 +4,15 @@ namespace Sandyandi\ElasticQb;
 
 use Sandyandi\ElasticQb\Contracts\QueryContract;
 use Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade as BooleanFacade;
-use Sandyandi\ElasticQb\Queries\Leaf\Factory as LeafFacade;
+use Sandyandi\ElasticQb\Queries\Leaf\Factory as LeafFactory;
 
+/**
+ * @method \Sandyandi\ElasticQb\Contracts\QueryContract term($key, $value)
+ * @method \Sandyandi\ElasticQb\Contracts\QueryContract match($key, $value)
+ * @method \Sandyandi\ElasticQb\Contracts\QueryContract matchPrefix($key, $value)
+ * @method \Sandyandi\ElasticQb\Contracts\QueryContract matchPhrasePrefix($key, $value)
+ * @method \Sandyandi\ElasticQb\Contracts\QueryContract multiMatch($keys, $value)
+ */
 class Query implements QueryContract
 {
     /**
@@ -25,7 +32,7 @@ class Query implements QueryContract
 
     public function __construct()
     {
-        $this->leafFacade = new LeafFacade();
+        $this->leafFacade = LeafFactory::getInstance();
         $this->booleanFacade = new BooleanFacade($this->leafFacade);
     }
 

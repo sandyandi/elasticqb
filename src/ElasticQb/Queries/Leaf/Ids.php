@@ -4,21 +4,19 @@ namespace Sandyandi\ElasticQb\Queries\Leaf;
 
 use Sandyandi\ElasticQb\Contracts\QueryContract;
 
-class MultiMatch implements QueryContract
+class Ids implements QueryContract
 {
     /**
-     * @var mixed
+     * @var array
      */
     protected $value;
 
     /**
-     * @param array $keys
-     * @param mixed $value
+     * @param array $value
      */
-    public function __construct($keys, $value)
+    public function __construct($value)
     {
         $this->value = $value;
-        $this->value['fields'] = $keys;
     }
 
     /**
@@ -26,6 +24,6 @@ class MultiMatch implements QueryContract
      */
     public function getQuery()
     {
-        return ['multi_match' => $this->value];
+        return ['ids' => $this->value];
     }
 }

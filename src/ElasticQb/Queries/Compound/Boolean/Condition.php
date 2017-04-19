@@ -30,7 +30,7 @@ class Condition implements QueryContract
     /**
      * @param \Sandyandi\ElasticQb\Contracts\QueryContract $query
      *
-     * @return $this
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Condition
      */
     public function addQuery(QueryContract $query)
     {

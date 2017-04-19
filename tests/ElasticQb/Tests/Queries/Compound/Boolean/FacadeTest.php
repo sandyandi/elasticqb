@@ -3,7 +3,6 @@
 namespace Sandyandi\Elasticsearch\Tests\Queries\Compound\Boolean;
 
 use Sandyandi\ElasticQb\Queries\Compound\Boolean\Facade;
-use Sandyandi\ElasticQb\Queries\Leaf\Factory;
 
 class FacadeTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,7 +13,7 @@ class FacadeTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->facade = new Facade(new Factory());
+        $this->facade = new Facade();
     }
 
     /**

@@ -6,11 +6,6 @@ use Sandyandi\ElasticQb\Contracts\QueryContract;
 
 class Boolean implements QueryContract
 {
-    const CONDITION_MUST = 'must';
-    const CONDITION_MUST_NOT = 'must_not';
-    const CONDITION_SHOULD = 'should';
-    const CONDITION_FILTER = 'filter';
-
     /**
      * @var \Sandyandi\ElasticQb\Contracts\QueryContract[]
      */
@@ -23,7 +18,7 @@ class Boolean implements QueryContract
      */
     public function appendToMust(QueryContract $query)
     {
-        return $this->addCondition(static::CONDITION_MUST, $query);
+        return $this->addCondition('must', $query);
     }
 
     /**
@@ -33,7 +28,7 @@ class Boolean implements QueryContract
      */
     public function appendToMustNot(QueryContract $query)
     {
-        return $this->addCondition(static::CONDITION_MUST_NOT, $query);
+        return $this->addCondition('must_not', $query);
     }
 
     /**
@@ -43,7 +38,7 @@ class Boolean implements QueryContract
      */
     public function appendToShould(QueryContract $query)
     {
-        return $this->addCondition(static::CONDITION_SHOULD, $query);
+        return $this->addCondition('should', $query);
     }
 
     /**
@@ -53,7 +48,7 @@ class Boolean implements QueryContract
      */
     public function appendToFilter(QueryContract $query)
     {
-        return $this->addCondition(static::CONDITION_FILTER, $query);
+        return $this->addCondition('filter', $query);
     }
 
     /**
@@ -72,9 +67,9 @@ class Boolean implements QueryContract
 
     /**
      * @param string $condition
-     * @param QueryContract $query
+     * @param \Sandyandi\ElasticQb\Contracts\QueryContract $query
      *
-     * @return $this
+     * @return \Sandyandi\ElasticQb\Queries\Compound\Boolean\Boolean
      */
     protected function addCondition($condition, QueryContract $query)
     {
